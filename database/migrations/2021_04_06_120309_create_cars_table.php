@@ -26,7 +26,7 @@ class CreateCarsTable extends Migration
             $table->string('kilometrage');
             $table->string('couleur');
             $table->string('carrosserie');
-            $table->integer('portes');
+            $table->string('portes');
             $table->string('puissance_fiscale');
             $table->boolean('premiere_main');
             $table->boolean('garantie');
@@ -35,7 +35,6 @@ class CreateCarsTable extends Migration
             // special columns
             $table->boolean('available')->default(1);
             $table->string('token')->unique()->nullable();
-            
         });
     }
 

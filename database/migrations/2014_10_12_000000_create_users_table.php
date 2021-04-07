@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('adresse')->nullable();
             $table->string('code_postal')->nullable();
             $table->string('rc')->nullable();
-            $table->integer('if')->nullable();
-            $table->integer('ice')->nullable();
+            $table->string('if')->nullable();
+            $table->string('ice')->nullable();
             $table->date('pack_end_date')->nullable();
             $table->rememberToken();
             $table->timestamps();

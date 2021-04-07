@@ -50,7 +50,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'car_id',
         'pack_id',
     ];
 

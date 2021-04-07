@@ -37,8 +37,8 @@ class UserFactory extends Factory
             'adresse' => 'fsdfsdfsdfsdfsd',
             'code_postal' => 'fsdfsdgsdgsdgsd',
             'rc' => 'sdfsdgsdtstsdfsdf',
-            'if' => 34,
-            'ice' => 6,
+            'if' => '34',
+            'ice' => '6',
             'pack_end_date' => '9999-12-31',
         ];
     }
