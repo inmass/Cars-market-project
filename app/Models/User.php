@@ -11,15 +11,35 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function cars() {
+        return $this->hasMany(Car::class);
+    }
+    public function pack() {
+        return $this->belongsTo(Pack::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
         'email',
-        'password',
+        'phone',
+        'nom_garage',
+        'logo_garage',
+        'fixe',
+        'fax',
+        'ville',
+        'adresse',
+        'code_postal',
+        'rc',
+        'if',
+        'ice',
+        'pack_end_date',
     ];
 
     /**
@@ -30,6 +50,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'car_id',
+        'pack_id',
     ];
 
     /**
