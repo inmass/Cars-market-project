@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\LTR\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashBoardController extends Controller
 {
     /**
      * Display the login view.
@@ -14,6 +14,6 @@ class HomeController extends Controller
      */
     public function show()
     {
-        return view('dashboard.home');
+        return view('LTR.dashboard.dashboard');
     }
 }
