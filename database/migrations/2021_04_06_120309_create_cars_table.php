@@ -34,6 +34,7 @@ class CreateCarsTable extends Migration
 
             // special columns
             $table->boolean('available')->default(1);
+            $table->boolean('visible')->default(1);
             $table->string('token')->unique()->nullable();
         });
     }
