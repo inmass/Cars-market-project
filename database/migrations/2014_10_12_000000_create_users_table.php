@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
 
             // special columns
             $table->boolean('super_user')->default(0);
+            $table->boolean('active')->default(1);
         });
     }
 

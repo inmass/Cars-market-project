@@ -16,6 +16,14 @@ class Car extends Model
         return $this->belongsTo(Particular::class);
     }
 
+    public function token() {
+        
+        $token = strval(($this->id+10)*2);
+
+        return sprintf('C-%s', $token);
+    }
+    // 
+
     /**
      * The attributes that are mass assignable.
      *

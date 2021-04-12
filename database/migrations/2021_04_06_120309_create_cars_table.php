@@ -30,6 +30,7 @@ class CreateCarsTable extends Migration
             $table->string('puissance_fiscale');
             $table->boolean('premiere_main');
             $table->boolean('garantie');
+            $table->string('prix');
             $table->string('options'); //will be stored as a serialized array from checkboxes value
 
             // special columns
