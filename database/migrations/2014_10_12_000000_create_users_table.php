@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('rc')->nullable();
             $table->string('if')->nullable();
             $table->string('ice')->nullable();
+            $table->string('pack')->nullable();
             $table->date('pack_end_date')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -18,7 +18,7 @@ class Car extends Model
 
     public function token() {
         
-        $token = strval(($this->id+10)*2);
+        $token = strval(($this->id+999)*17);
 
         return sprintf('C-%s', $token);
     }

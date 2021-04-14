@@ -14,8 +14,8 @@ class User extends Authenticatable
     public function cars() {
         return $this->hasMany(Car::class);
     }
-    public function pack() {
-        return $this->belongsTo(Pack::class);
+    public function messages() {
+        return $this->hasMany(Message::class);
     }
 
     /**

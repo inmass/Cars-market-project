@@ -36,39 +36,19 @@
 											<table class="table card-table table-striped table-vcenter text-nowrap">
 												<thead>
 													<tr>
-														<th>Id</th>
 														<th>Marque</th>
 														<th>Modele</th>
-														<th>Version</th>
 														<th>Date de publication</th>
-														<th>Statut</th>
-														<th>Action</th>
+														<th>Prix</th>
 													</tr>
 												</thead>
 												<tbody>
 													@foreach ($total_cars as $car)
 														<tr>
-															<td>{{ $car->token() }}</td>
 															<td>{{ $car->marque }}</td>
 															<td>{{ $car->modele }}</td>
-															<td>{{ $car->version }}</td>
 															<td class="text-nowrap">{{ $car->created_at->format('d/m/Y') }}</td>
-															@if ($car->available == 1)
-																@if ($car->visible == 1)
-																	<td>En vente</td>
-																@else
-																	<td>En pause</td>
-																@endif
-															@else
-																<td>Vendu</td>
-															@endif
-															<td class="w-1">
-																<a href="#" class="icon text-danger">
-																	<i class="fa fa-pencil"></i>
-																	<span style="color:#212529 !important"> / </span>
-																	<i class="fe fe-eye"></i>
-																</a>
-															</td>
+															<td>{{$car->prix}}</td>
 														</tr>
 													@endforeach
 												</tbody>

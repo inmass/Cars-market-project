@@ -37,6 +37,7 @@ class CarFactory extends Factory
             'premiere_main' => 1,
             'garantie' => 1,
             'options' => 'fsdfsdfsdgsdgsdgsd',
+            'prix' => '20000'
         ];
     }
 }

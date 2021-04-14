@@ -1,3 +1,29 @@
+<!-- Grid Modal -->
+<div class="modal fade" id="add_car" tabindex="-1" role="dialog" aria-labelledby="add_car" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-6">
+                        <p class="text-center">obtenez vous un code particulier?</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-center">Ajouter une nouvelle voiture</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-success btn-sm mt-2 w-100" href="#">Oui</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-success btn-sm mt-2 w-100" href="#">Novelle voiture</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Grid Modal -->
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay " data-toggle="sidebar"></div>
 <aside class="app-sidebar doc-sidebar ">
@@ -9,33 +35,61 @@
             <div class="user-info">
                 <h2>{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</h2>
                 <span>{{ Auth::user()->nom_garage }}</span>
+                @if (Auth::user()->super_user)
+					<p>this is super user</p>
+				@else
+					{{-- @include('LTR/dashboard/sidebar') --}}
+					<p>this is not super user</p>
+				@endif
             </div>
         </div>
     </div>
     <ul class="side-menu">
-        <li class="slide">
-            <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Dashboard</span></a>
-        </li>
-        <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Profile</span><i class="angle fa fa-angle-right"></i></a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="#">informations personnelles</a></li>
-                <li><a class="slide-item" href="#">informations garage</a></li>
-                <li><a class="slide-item" href="#">Gestion de compte</a></li>
-                <li><a class="slide-item" href="#">Gestion d'abonnement</a></li>
-            </ul>
-        </li>
-        <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Voitures</span><i class="angle fa fa-angle-right"></i></a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{ route('mycars') }}">Mes voitures</a></li>
-                <li><a class="slide-item" href="#">Ajouter une voiture</a></li>
-                <li><a class="slide-item" href="#">Voitures particulier</a></li>
-            </ul>
-        </li>
-        <li class="slide">
-            <a class="side-menu__item" href="#"></i><span class="side-menu__label">Messages</span></a>
-        </li>
+        @if (!Auth::user()->super_user)
+            <li class="slide">
+                <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Dashboard</span></a>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Profile</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="{{ route('profile') }}">informations generales</a></li>
+                    <li><a class="slide-item" href="#">Gestion d'abonnement</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Voitures</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="{{ route('mycars') }}">Mes voitures</a></li>
+                    <li><a class="slide-item" href="{{ route('particular_cars') }}">Voitures particulier</a></li>
+                    <li><a class="slide-item" href="#" data-toggle="modal" data-target="#add_car">Ajouter une voiture</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" href="#"></i><span class="side-menu__label">Messages</span></a>
+            </li>
+        @else
+            <li class="slide">
+                <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Dashboard</span></a>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" href="#"></i><span class="side-menu__label">General setting</span></a>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Garages</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="#">Liste des garages</a></li>
+                    <li><a class="slide-item" href="#">Voitures particulier</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Messages</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="#">Formulaires contact</a></li>
+                    <li><a class="slide-item" href="#">Demandes d'adhesion</a></li>
+                    <li><a class="slide-item" href="#">Consultation voitures</a></li>
+                </ul>
+            </li>
+		@endif
     </ul>
 </aside>
 <!--/Sidebar menu-->
