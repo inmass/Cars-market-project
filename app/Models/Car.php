@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Events\CarCreated;
 
 class Car extends Model
 {
@@ -16,11 +17,9 @@ class Car extends Model
         return $this->belongsTo(Particular::class);
     }
 
-    public function token() {
-        
-        $token = strval(($this->id+999)*17);
-
-        return sprintf('C-%s', $token);
+    public function uid() {
+        $uid = strval($this->id*17);
+        return sprintf('c-%s', $uid);
     }
     // 
 
@@ -67,5 +66,9 @@ class Car extends Model
      */
     protected $casts = [
 
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => CarCreated::class,
     ];
 }

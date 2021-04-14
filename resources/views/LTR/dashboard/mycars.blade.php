@@ -48,7 +48,7 @@
 												<tbody>
 													@foreach ($total_cars as $car)
 														<tr>
-															<td>{{ $car->token() }}</td>
+															<td>{{ $car->uid() }}</td>
 															<td>{{ $car->marque }}</td>
 															<td>{{ $car->modele }}</td>
 															<td>{{ $car->version }}</td>
