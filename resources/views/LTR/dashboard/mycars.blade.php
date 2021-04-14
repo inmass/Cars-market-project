@@ -63,10 +63,12 @@
 																<td>Vendu</td>
 															@endif
 															<td class="w-1">
-																<a href="#" class="icon text-danger">
-																	<i class="fa fa-pencil"></i>
-																	<span style="color:#212529 !important"> / </span>
+																<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
 																	<i class="fe fe-eye"></i>
+																</a>
+																<a href="#" class="icon text-danger">
+																	<span style="color:#212529 !important"> / </span>
+																	<i class="fa fa-pencil"></i>
 																</a>
 															</td>
 														</tr>

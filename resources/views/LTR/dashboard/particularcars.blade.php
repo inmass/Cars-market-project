@@ -29,26 +29,36 @@
 							<div class="col-xl-12 col-lg-12 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Mes voitures</h3>
+										<h3 class="card-title">Voitures particuliers</h3>
 									</div>
 									<div class="card-body p-0">
 										<div class="table-responsive">
 											<table class="table card-table table-striped table-vcenter text-nowrap">
 												<thead>
 													<tr>
+														<th>ID</th>
 														<th>Marque</th>
 														<th>Modele</th>
+														<th>Version</th>
 														<th>Date de publication</th>
 														<th>Prix</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													@foreach ($total_cars as $car)
 														<tr>
+															<td>{{ $car->uid() }}</td>
 															<td>{{ $car->marque }}</td>
 															<td>{{ $car->modele }}</td>
+															<td>{{ $car->version }}</td>
 															<td class="text-nowrap">{{ $car->created_at->format('d/m/Y') }}</td>
 															<td>{{$car->prix}}</td>
+															<td class="w-1">
+																<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
+																	<i class="fe fe-eye"></i>
+																</a>
+															</td>
 														</tr>
 													@endforeach
 												</tbody>
