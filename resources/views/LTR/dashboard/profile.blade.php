@@ -21,7 +21,7 @@
 				@include('LTR/dashboard/sidebar')
 
 				<!--Modals-->
-				<form action="" method="post">
+				<form action="{{ route('profile') }}" id="profile_form" method="post">
 					@csrf
 					<div class="modal fade" id="profile_edit" tabindex="-1" role="dialog"  aria-hidden="true">
 						<div class="modal-dialog" role="document">
@@ -36,14 +36,14 @@
 									<form>
 										<div class="form-group">
 											<label class="form-control-label">Email:</label>
-											<input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
+											<input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
 											@error('email')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Telephone:</label>
-											<input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone }}">
+											<input type="text" class="form-control" id="phone" name="phone" value="{{ Auth::user()->phone }}">
 											@error('phone')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
@@ -59,7 +59,52 @@
 					</div>
 				</form>
 
-				<form action="" method="post">
+				<form action="" id="password_form" method="post">
+					@csrf
+					<div class="modal fade" id="password_edit" tabindex="-1" role="dialog"  aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="example-Modal3">Changer mot de passe</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form>
+										<div class="form-group">
+											<label  class="form-control-label">Old password:</label>
+											<input type="password" id="old_password" name="old_password" class="form-control" >
+											@error('old_password')
+												<p class = "text-danger">{{$message}}</p>
+											@enderror
+										</div>
+										<div class="form-group">
+											<label  class="form-control-label">New password:</label>
+											<input type="password" id="new_password" name="new_password" class="form-control" >
+											@error('new_password')
+												<p class = "text-danger">{{$message}}</p>
+											@enderror
+										</div>
+										<div class="form-group">
+											<label  class="form-control-label">Confirm new password:</label>
+											<input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control" >
+											@error('new_password_confirmation')
+												<p class = "text-danger">{{$message}}</p>
+											@enderror
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+									<button type="submit" name="password_edit_form" class="btn btn-primary">Valider</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<form action="" id="garage_form" method="post">
 					@csrf
 					<div class="modal fade" id="garage_edit" tabindex="-1" role="dialog"  aria-hidden="true">
 						<div class="modal-dialog" role="document">
@@ -74,35 +119,35 @@
 									<form>
 										<div class="form-group">
 											<label  class="form-control-label">Nom garage:</label>
-											<input type="text" class="form-control" name="nom_garage" value="{{ Auth::user()->nom_garage }}">
+											<input type="text" class="form-control" id="nom_garage" name="nom_garage" value="{{ Auth::user()->nom_garage }}">
 											@error('nom_garage')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Addresse:</label>
-											<input type="text" class="form-control" name="adresse" value="{{ Auth::user()->adresse }}">
+											<input type="text" class="form-control" id="adresse" name="adresse" value="{{ Auth::user()->adresse }}">
 											@error('adresse')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Fixe:</label>
-											<input type="text" class="form-control" name="fixe" value="{{ Auth::user()->fixe }}">
+											<input type="text" class="form-control" id="fixe" name="fixe" value="{{ Auth::user()->fixe }}">
 											@error('fixe')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
 										</div>
 										<div class="form-group">
 											<label class="form-control-label">Fax:</label>
-											<input type="text" class="form-control" name="fax" value="{{ Auth::user()->fax }}">
+											<input type="text" class="form-control" id="fax" name="fax" value="{{ Auth::user()->fax }}">
 											@error('fax')
 												<p class = "text-danger">{{$message}}</p>
 											@enderror
 										</div>
 										<div class="form-group">
 											<label class="form-control-label">Code postal:</label>
-											<input type="text" class="form-control" name="code_postal" value="{{ Auth::user()->code_postal }}">
+											<input type="text" class="form-control" id="code_postal" name="code_postal" value="{{ Auth::user()->code_postal }}">
 											@error('code_postal')
 												<p>{{$message}}</p>
 											@enderror
@@ -118,50 +163,6 @@
 					</div>
 				</form>
 
-				<form action="" method="post">
-					@csrf
-					<div class="modal fade" id="password_edit" tabindex="-1" role="dialog"  aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="example-Modal3">Changer mot de passe</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<form>
-										<div class="form-group">
-											<label  class="form-control-label">Old password:</label>
-											<input type="password" name="old_password" class="form-control" >
-											@error('old_password')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
-										</div>
-										<div class="form-group">
-											<label  class="form-control-label">New password:</label>
-											<input type="password" name="new_password" class="form-control" >
-											@error('new_password')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
-										</div>
-										<div class="form-group">
-											<label  class="form-control-label">Confirm new password:</label>
-											<input type="password" name="new_password_confirmation" class="form-control" >
-											@error('new_password_confirmation')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-									<button type="submit" name="password_edit_form" class="btn btn-primary">Valider</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
 				<!--Modals-->
 
                 <!--App-Content-->
@@ -260,6 +261,8 @@
 		<!--/Page-->
 
 		@include('LTR/dashboard/scripts')
+
+		<script type="text/javascript" src="../js/profile.js"></script>
 
 	</body>
 </html>
