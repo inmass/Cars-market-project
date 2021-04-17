@@ -1,4 +1,3 @@
-// ajax
 // profile
 const profile_form = document.getElementById('profile_form');
 const email = document.getElementById('email');
@@ -16,30 +15,39 @@ const fixe = document.getElementById('fixe');
 const fax = document.getElementById('fax');
 const code_postal = document.getElementById('code_postal');
 
-const csrf = document.getElementsByName('_token')[0].value;
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
 
+// create event for profile_form
 profile_form.addEventListener('submit', e=>{
     e.preventDefault();
 
     const fd = new FormData();
     fd.append('email' , email.value);
     fd.append('phone', phone.value);
+    fd.append('profile_edit_form', '')
 
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
         data: fd,
         success: function(data){
-            console.log(data);
+            $('.errors').empty();
+            Object.keys(data).forEach(function(key) {
+                if ('success' in data) {
+                    $('#profile_edit').modal('hide');
+                    console.log(data.success)
+                    $('.errors').empty();
+                } else {
+                    $('#'+key+'_errors').html(data[key]);
+                }
+            })
         },
-        error: function(){
-            console.log('There was an error');
+        error: function(jqxhr, status, exception){
+            console.log('Exception:', exception)
         },
         cache: false,
         contentType: false,
@@ -53,22 +61,33 @@ password_form.addEventListener('submit', e=>{
     e.preventDefault();
 
     const fd = new FormData();
-    fd.append('_token', csrf);
     fd.append('old_password', old_password.value);
     fd.append('new_password', new_password.value);
     fd.append('new_password_confirmation', new_password_confirmation.value);
+    fd.append('password_edit_form', '')
 
     $.ajax({
         type: 'POST',
-        url: url,
-        Accept: 'application/json',
         enctype: 'multipart/form-data',
         data: fd,
         success: function(data){
-            console.log(data.message);
+            $('.errors').empty();
+            Object.keys(data).forEach(function(key) {
+                if ('success' in data) {
+                    $('#password_edit').modal('hide');
+                    console.log(data.success)
+                    $('.errors').empty();
+                    $('#old_password').val("");
+                    $('#new_password').val("");
+                    $('#new_password_confirmation').val("");
+                } else {
+                    $('#'+key+'_errors').html(data[key]);
+                    console.log(data[key]);
+                }
+            })
         },
-        error: function(data){
-            console.log(data.message);
+        error: function(jqxhr, status, exception){
+            console.log('Exception:', exception)
         },
         cache: false,
         contentType: false,
@@ -82,24 +101,31 @@ garage_form.addEventListener('submit', e=>{
     e.preventDefault();
 
     const fd = new FormData();
-    fd.append('_token', csrf);
     fd.append('nom_garage', nom_garage.value);
     fd.append('adresse', adresse.value);
     fd.append('fixe', fixe.value);
     fd.append('fax', fax.value);
     fd.append('code_postal', code_postal.value);
+    fd.append('garage_edit_form', '')
 
     $.ajax({
         type: 'POST',
-        url: url,
         enctype: 'multipart/form-data',
         data: fd,
-
         success: function(data){
-            console.log(data.message);
+            $('.errors').empty();
+            Object.keys(data).forEach(function(key) {
+                if ('success' in data) {
+                    $('#garage_edit').modal('hide');
+                    console.log(data.success)
+                    $('.errors').empty();
+                } else {
+                    $('#'+key+'_errors').html(data[key]);
+                }
+            })
         },
-        error: function(data){
-            console.log(data.message);
+        error: function(jqxhr, status, exception){
+            console.log('Exception:', exception)
         },
         cache: false,
         contentType: false,

@@ -37,22 +37,18 @@
 										<div class="form-group">
 											<label class="form-control-label">Email:</label>
 											<input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
-											@error('email')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="email_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Telephone:</label>
 											<input type="text" class="form-control" id="phone" name="phone" value="{{ Auth::user()->phone }}">
-											@error('phone')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="phone_errors" class = "errors text-danger"></p>
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-									<button type="submit" name="profile_edit_form" class="btn btn-primary">Valider</button>
+									<button type="submit" name="profile_edit_form" id='profile_edit_form' class="btn btn-primary">Valider</button>
 								</div>
 							</div>
 						</div>
@@ -75,23 +71,17 @@
 										<div class="form-group">
 											<label  class="form-control-label">Old password:</label>
 											<input type="password" id="old_password" name="old_password" class="form-control" >
-											@error('old_password')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="old_password_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">New password:</label>
 											<input type="password" id="new_password" name="new_password" class="form-control" >
-											@error('new_password')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="new_password_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Confirm new password:</label>
 											<input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control" >
-											@error('new_password_confirmation')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="new_password_confirmation_errors" class = "errors text-danger"></p>
 										</div>
 									</form>
 								</div>
@@ -120,37 +110,27 @@
 										<div class="form-group">
 											<label  class="form-control-label">Nom garage:</label>
 											<input type="text" class="form-control" id="nom_garage" name="nom_garage" value="{{ Auth::user()->nom_garage }}">
-											@error('nom_garage')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="nom_garage_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Addresse:</label>
 											<input type="text" class="form-control" id="adresse" name="adresse" value="{{ Auth::user()->adresse }}">
-											@error('adresse')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="adresse_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label  class="form-control-label">Fixe:</label>
 											<input type="text" class="form-control" id="fixe" name="fixe" value="{{ Auth::user()->fixe }}">
-											@error('fixe')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="fixe_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label class="form-control-label">Fax:</label>
 											<input type="text" class="form-control" id="fax" name="fax" value="{{ Auth::user()->fax }}">
-											@error('fax')
-												<p class = "text-danger">{{$message}}</p>
-											@enderror
+											<p id="fax_errors" class = "errors text-danger"></p>
 										</div>
 										<div class="form-group">
 											<label class="form-control-label">Code postal:</label>
 											<input type="text" class="form-control" id="code_postal" name="code_postal" value="{{ Auth::user()->code_postal }}">
-											@error('code_postal')
-												<p>{{$message}}</p>
-											@enderror
+											<p id="code_postal_errors" class = "errors text-danger"></p>
 										</div>
 									</form>
 								</div>

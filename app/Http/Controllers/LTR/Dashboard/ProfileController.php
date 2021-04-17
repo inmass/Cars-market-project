@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LTR\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Auth, Validator;
 use App\Rules\isValidPassword;
 
@@ -29,27 +30,38 @@ class ProfileController extends Controller
     {  
         $user = Auth::user();
 
-        if ($request->has('profile_edit_form')) {
+        // profile form
+        if ($request->exists('profile_edit_form')) {
             
-            error_log('this is profile_edit');
-            
+            // validation rules
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users',
-                'phone' => 'required|unique:users'
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($user)
+                ],
+                'phone' => [
+                    'required',
+                    Rule::unique('users')->ignore($user)
+                ],
             ]);
 
+            // check if the validation fails
             if ($validator->fails()) {
-                // return redirect()->route('profile')
-                //             ->withErrors($validator)
-                //             ->withInput();
                 return response()->json($validator->messages());
             }
 
-            dd($request->all());
+            // if validated
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();
+            return response()->json(['success'=> 'Les informations ont été mises à jour avec succès']);
         }
 
-        if ($request->has('password_edit_form')) {
+        // password form
+        if ($request->exists('password_edit_form')) {
             
+            // validation rules
             $validator = Validator::make($request->all(), [
                 'old_password' => [
                     'required',
@@ -68,36 +80,45 @@ class ProfileController extends Controller
                 'new_password_confirmation' => 'required'
             ]);
 
+            // check if the validation fails
             if ($validator->fails()) {
-                return redirect()->route('profile')
-                            ->withErrors($validator)
-                            ->withInput();
+                return response()->json($validator->messages());
             }
 
-            dd($request->all());
+            // if validated
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            return response()->json(['success'=> 'Mot de passe met à jour avec succès.']);
 
         }
 
-        if ($request->has('garage_edit_form')) {
+        // garage_form
+        if ($request->exists('garage_edit_form')) {
 
+            // validation rules
             $validator = Validator::make($request->all(), [
-                'nom_garage' => 'required|email',
+                'nom_garage' => 'required',
                 'adresse' => 'required',
                 'fixe' => 'required',
                 'fax' => 'required',
                 'code_postal' => 'required'
             ]);
 
+            // check if the validation fails
             if ($validator->fails()) {
-                return redirect()->route('profile')
-                            ->withErrors($validator)
-                            ->withInput();
+                return response()->json($validator->messages());
             }
 
-            dd($request->all());
+            // if validated
+            $user->nom_garage = $request->nom_garage;
+            $user->adresse = $request->adresse;
+            $user->fixe = $request->fixe;
+            $user->fax = $request->fax;
+            $user->code_postal = $request->code_postal;
+            $user->save();
+            return response()->json(['success'=> 'Les informations ont été mises à jour avec succès']);
 
         }
-        
 
     }
 }
