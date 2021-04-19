@@ -32,3 +32,9 @@
 
 <!-- Color-Skins -->
 <link id="theme" rel="stylesheet" type="text/css" media="all" href="../assets/color-skins/color13.css" />
+
+<!-- Sweet Alert -->
+<link href="../assets/plugins/sweet-alert/sweetalert.css" rel="stylesheet" />
+
+<!-- Color-Skins -->
+<link id="theme" rel="stylesheet" type="text/css" media="all" href="../assets/color-skins/color13.css" />

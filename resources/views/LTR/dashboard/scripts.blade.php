@@ -38,4 +38,8 @@
 <script src="../assets/js/index1.js"></script>
 
 <!-- Custom Js-->
+<script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script>
+<script src="../assets/js/sweet-alert.js"></script>
+
+<!-- Custom Js-->
 <script src="../assets/js/admin-custom.js"></script>

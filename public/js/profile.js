@@ -39,8 +39,14 @@ profile_form.addEventListener('submit', e=>{
             Object.keys(data).forEach(function(key) {
                 if ('success' in data) {
                     $('#profile_edit').modal('hide');
-                    console.log(data.success)
                     $('.errors').empty();
+                    swal({
+                        title: '',
+                        text: data.success,
+                        type: 'success',
+                    }, function(){ 
+                        location.reload();
+                    });
                 } else {
                     $('#'+key+'_errors').html(data[key]);
                 }
@@ -75,14 +81,19 @@ password_form.addEventListener('submit', e=>{
             Object.keys(data).forEach(function(key) {
                 if ('success' in data) {
                     $('#password_edit').modal('hide');
-                    console.log(data.success)
                     $('.errors').empty();
                     $('#old_password').val("");
                     $('#new_password').val("");
                     $('#new_password_confirmation').val("");
+                    swal({
+                        title: '',
+                        text: data.success,
+                        type: 'success',
+                    }, function(){ 
+                        location.reload();
+                    });
                 } else {
                     $('#'+key+'_errors').html(data[key]);
-                    console.log(data[key]);
                 }
             })
         },
@@ -117,8 +128,14 @@ garage_form.addEventListener('submit', e=>{
             Object.keys(data).forEach(function(key) {
                 if ('success' in data) {
                     $('#garage_edit').modal('hide');
-                    console.log(data.success)
                     $('.errors').empty();
+                    swal({
+                        title: '',
+                        text: data.success,
+                        type: 'success',
+                    }, function(){ 
+                        location.reload();
+                    });
                 } else {
                     $('#'+key+'_errors').html(data[key]);
                 }

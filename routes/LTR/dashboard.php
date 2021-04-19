@@ -29,7 +29,11 @@ Route::prefix('/dashboard')->group(function () {
     ->middleware(['auth'])
     ->name('particular_cars');
 
-    Route::get('/car/{slug}', [CarDetailsController::class, 'show'])
+    Route::get('/car/{slug?}', [CarDetailsController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('dash_car');
+
+    Route::post('/car/{slug?}', [CarDetailsController::class, 'store'])
     ->middleware(['auth'])
     ->name('dash_car');
 
