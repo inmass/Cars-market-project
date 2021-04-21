@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function pack() {
+        return $this->belongsTo(Pack::class);
+    }
     public function cars() {
         return $this->hasMany(Car::class);
     }

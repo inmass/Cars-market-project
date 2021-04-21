@@ -59,9 +59,9 @@
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-4 col-xl-12">
-									<a href="#" style="color:inherit;">
+									<a href='{{ route('particular_cars') }}' style="color:inherit;">
 										<div class="card overflow-hidden">
-											<div class="card-body iconfont text-center" href='#'>
+											<div class="card-body iconfont text-center" >
 												<h5>Voitures particulier</h5>
 												<h3 class="counter mb-0 fs-30 mt-1">{{count($particular_cars)}}</h3>
 											</div>
