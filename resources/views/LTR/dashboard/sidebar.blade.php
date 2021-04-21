@@ -1,4 +1,4 @@
-<!-- Grid Modal -->
+{{-- <!-- Grid Modal -->
 <div class="modal fade" id="add_car" tabindex="-1" role="dialog" aria-labelledby="add_car" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-<!-- Grid Modal -->
+<!-- Grid Modal --> --}}
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay " data-toggle="sidebar"></div>
 <aside class="app-sidebar doc-sidebar ">
@@ -61,7 +61,7 @@
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('mycars') }}">Mes voitures</a></li>
                     <li><a class="slide-item" href="{{ route('particular_cars') }}">Voitures particulier</a></li>
-                    <li><a class="slide-item" href="#" data-toggle="modal" data-target="#add_car">Ajouter une voiture</a></li>
+                    <li><a class="slide-item" href="{{ route('add_car') }}">Ajouter une voiture</a></li>
                 </ul>
             </li>
             <li class="slide">

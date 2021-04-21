@@ -5,6 +5,7 @@ use App\Http\Controllers\LTR\Dashboard\MyCarsController;
 use App\Http\Controllers\LTR\Dashboard\ProfileController;
 use App\Http\Controllers\LTR\Dashboard\ParticularCarsController;
 use App\Http\Controllers\LTR\Dashboard\CarDetailsController;
+use App\Http\Controllers\LTR\Dashboard\AddCarController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/dashboard')->group(function () {
@@ -22,8 +23,7 @@ Route::prefix('/dashboard')->group(function () {
     ->name('profile');
 
     Route::post('/profile', [ProfileController::class, 'store'])
-    ->middleware(['auth'])
-    ->name('profile');
+    ->middleware(['auth']);
 
     Route::get('/particular', [ParticularCarsController::class, 'show'])
     ->middleware(['auth'])
@@ -34,7 +34,13 @@ Route::prefix('/dashboard')->group(function () {
     ->name('dash_car');
 
     Route::post('/car/{slug?}', [CarDetailsController::class, 'store'])
+    ->middleware(['auth']);
+
+    Route::get('/add_car', [AddCarController::class, 'show'])
     ->middleware(['auth'])
-    ->name('dash_car');
+    ->name('add_car');
+
+    Route::post('/add_car', [AddCarController::class, 'store'])
+    ->middleware(['auth']);
 
 });

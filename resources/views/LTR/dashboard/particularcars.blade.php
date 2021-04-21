@@ -21,6 +21,7 @@
 				@include('LTR/dashboard/header')
 				@include('LTR/dashboard/sidebar')
 
+				@if ($total_cars->count())
 				<!--App-Content-->
 				<div class="app-content  my-3 my-md-5">
 					<div class="side-app">
@@ -37,10 +38,10 @@
 												<thead>
 													<tr>
 														<th>ID</th>
+														<th>PUBLIÉE LE</th>
 														<th>Marque</th>
 														<th>Modele</th>
 														<th>Version</th>
-														<th>Date de publication</th>
 														<th>Prix</th>
 														<th>Action</th>
 													</tr>
@@ -49,10 +50,10 @@
 													@foreach ($total_cars as $car)
 														<tr>
 															<td>{{ $car->uid() }}</td>
+															<td class="text-nowrap">{{ $car->created_at->format('d/m/Y') }}</td>
 															<td>{{ $car->marque }}</td>
 															<td>{{ $car->modele }}</td>
 															<td>{{ $car->version }}</td>
-															<td class="text-nowrap">{{ $car->created_at->format('d/m/Y') }}</td>
 															<td>{{$car->prix}}</td>
 															<td class="w-1">
 																<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
@@ -71,6 +72,15 @@
 					</div>
 				</div>
 				<!--/App-Content-->
+				@else
+				<div class="app-content  my-3 my-md-5">
+					<div class="side-app">
+						<div class="row mt-9">
+							<h1>No data available.</h1>
+						</div>
+					</div>
+				</div>		
+				@endif
 			</div>
 
 			@include('LTR/dashboard/footer')
