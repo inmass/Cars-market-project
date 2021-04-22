@@ -111,10 +111,12 @@
 																	<td>Vendu</td>
 																@endif
 																<td class="w-1">
-																	<a data-carid="{{ $car->id }}" data-caruid="{{ $car->uid() }}" class="btnModal icon text-danger" data-toggle="modal" data-target="#car_edit">
-																		<i class="fa fa-pencil"></i>
-																	</a>
-																	<span style="color:#212529 !important"> / </span>
+																	@if ($car->available)
+																		<a data-carid="{{ $car->id }}" data-caruid="{{ $car->uid() }}" class="btnModal icon text-danger" data-toggle="modal" data-target="#car_edit">
+																			<i class="fa fa-pencil"></i>
+																		</a>
+																		<span style="color:#212529 !important"> / </span>
+																	@endif
 																	<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
 																		<i class="fe fe-eye"></i>
 																	</a>
