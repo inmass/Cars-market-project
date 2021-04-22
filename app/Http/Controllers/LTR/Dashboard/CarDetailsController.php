@@ -5,7 +5,7 @@ namespace App\Http\Controllers\LTR\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
-use Validator;
+use Validator, Auth;
 
 class CarDetailsController extends Controller
 {
@@ -13,7 +13,6 @@ class CarDetailsController extends Controller
     {   
         $id = intval(explode('-', $slug)[1])/17;
         $car = Car::find($id);
-
         $context = [
             'car'=>$car,
         ];
@@ -42,8 +41,12 @@ class CarDetailsController extends Controller
 
         // if validated
         if ($request->statut == 'en_vente') {
-            $car->available = 1;
-            $car->visible = 1;
+            if (Auth::user()->canAddCar()) {
+                $car->available = 1;
+                $car->visible = 1;
+            } else {
+                return response()->json(['limit'=> 'Vous ne pouvez pas mettre plus de '.Auth::user()->pack->nombre_de_voitures.' voitures en vente.']);
+            }
         }
         if ($request->statut == 'en_pause') {
             $car->available = 1;

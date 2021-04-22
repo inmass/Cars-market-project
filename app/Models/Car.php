@@ -21,6 +21,11 @@ class Car extends Model
         $uid = strval($this->id*17);
         return sprintf('c-%s', $uid);
     }
+
+    public function getAllOptions() {
+        $unserializedOptions = unserialize($this->options);
+        return $unserializedOptions;
+    }
     // 
 
     /**

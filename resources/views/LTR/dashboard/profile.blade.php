@@ -3,7 +3,7 @@
 	<head>
         @include('LTR/dashboard/base')
 		<!-- Title -->
-		<title>Dashboard</title>
+		<title>Mon profil</title>
 	</head>
 	<body class="app sidebar-mini">
 
@@ -27,7 +27,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="example-Modal3">Editer profile</h5>
+									<h5 class="modal-title" id="example-Modal3">Editer profil</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -155,7 +155,7 @@
                                         <div id="profile-log-switch">
                                             <div class="fade show active mb-7" >
                                                 
-                                                <h3 class="mb-5">Mon profile</h3>
+                                                <h3 class="mb-5">Mon profil</h3>
                                                 <div class="table-responsive border">
                                                     <table class="table row table-borderless w-100 m-0 ">
                                                         <tbody class="col-lg-12 col-xl-6 p-0">

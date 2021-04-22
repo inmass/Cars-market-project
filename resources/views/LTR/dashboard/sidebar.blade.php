@@ -47,10 +47,10 @@
     <ul class="side-menu">
         @if (!Auth::user()->super_user)
             <li class="slide">
-                <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Dashboard</span></a>
+                <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Accueil</span></a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Profile</span><i class="angle fa fa-angle-right"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Profil</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('profile') }}">informations generales</a></li>
                     <li><a class="slide-item" href="#">Gestion d'abonnement</a></li>

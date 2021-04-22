@@ -4,7 +4,7 @@
 		@include('LTR/dashboard/base')
 
 		<!-- Title -->
-		<title>Dashboard</title>
+		<title>Mes voitures</title>
 	</head>
 	<body class="app sidebar-mini">
 

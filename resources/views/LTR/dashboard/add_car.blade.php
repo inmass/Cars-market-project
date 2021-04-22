@@ -4,7 +4,7 @@
 		@include('LTR/dashboard/base')
 
 		<!-- Title -->
-		<title>Ajouter Voiture</title>
+		<title>Ajouter voiture</title>
 	</head>
 	<body class="app sidebar-mini">
 
@@ -45,7 +45,7 @@
                                             <h3 class="mb-5 mt-15">Ajouter une nouvelle voiture</h3>
                                             <form id="new_car_form" method="post">
                                                 @csrf
-                                                <div id="basicwizard" class="border pt-0">
+                                                <div id="form_wizard" class="border pt-0">
                                                     <ul class="nav nav-tabs nav-justified">
                                                         <li class="nav-item"><a href="#tab1" data-toggle="tab" class="nav-link font-bold">Specifications</a></li>
                                                         <li class="nav-item"><a href="#tab2" data-toggle="tab" class="nav-link font-light">Informations voiture</a></li>
@@ -81,7 +81,7 @@
                                                                                 <label class="control-label form-label " for="version">Version</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <input id="version" name="version" type="text" class="required form-control" required>
+                                                                                <input id="version" name="version" type="text" class="required form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -91,7 +91,7 @@
                                                                                 <label class="control-label form-label " for="prix">Prix(en DH)</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <input id="prix" name="prix" type="text" class="required form-control" required>
+                                                                                <input id="prix" name="prix" type="text" class="required form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -107,7 +107,7 @@
                                                                                 <label class="control-label form-label " for="carburant">Carburant</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="carburant" id="carburant" required>
+                                                                                <select class="required form-control select" name="carburant" id="carburant">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="Essence">Essence</option>
                                                                                     <option value="Diesel">Diesel</option>
@@ -121,7 +121,7 @@
                                                                                 <label class="control-label form-label " for="boite_de_vitesse">Boite de vitesse</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="boite_de_vitesse" id="boite_de_vitesse" required>
+                                                                                <select class="required form-control select" name="boite_de_vitesse" id="boite_de_vitesse">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="Manuelle">Manuelle</option>
                                                                                     <option value="Automatique">Automatique</option>
@@ -133,7 +133,7 @@
                                                                                 <label class="control-label form-label " for="annee_mise_en_circulation">Année de la mise en circulation</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="annee_mise_en_circulation" id="annee_mise_en_circulation" required>
+                                                                                <select class="required form-control select" name="annee_mise_en_circulation" id="annee_mise_en_circulation">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="1964 ou plus ancien">1964 ou plus ancien</option>
                                                                                     <option value="1965">1965</option>
@@ -203,7 +203,7 @@
                                                                                 <label class="control-label form-label " for="dedouane">Véhicule dédouané</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="dedouane" id="dedouane" required>
+                                                                                <select class="required form-control select" name="dedouane" id="dedouane">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="Non, achté au maroc (ww)">Non, achté au maroc (ww)</option>
                                                                                     <option value="oui, dédouané">oui, dédouané</option>
@@ -217,7 +217,7 @@
                                                                                 <label class="control-label form-label " for="kilometrage">Kilométrage</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="kilometrage" id="kilometrage" required>
+                                                                                <select class="required form-control select" name="kilometrage" id="kilometrage">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="0-4 999">0 - 4 999</option>
                                                                                     <option value="5 000-9 999">5 000 - 9 999</option>
@@ -264,7 +264,7 @@
                                                                                 <label class="control-label form-label " for="couleur">Couleur</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="couleur" id="couleur" required>
+                                                                                <select class="required form-control select" name="couleur" id="couleur">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="Argent">Argent</option>
                                                                                     <option value="Beige">Beige</option>
@@ -301,7 +301,7 @@
                                                                                 <label class="control-label form-label " for="carrosserie">Carrosserie</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="carrosserie" id="carrosserie" required>
+                                                                                <select class="required form-control select" name="carrosserie" id="carrosserie">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="Cabriolet">Cabriolet</option>
                                                                                     <option value="Suv et 4x4">Suv et 4x4</option>
@@ -324,7 +324,7 @@
                                                                                 <label class="control-label form-label " for="portes">Nombre de portes</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="portes" id="portes" required>
+                                                                                <select class="required form-control select" name="portes" id="portes">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
@@ -344,7 +344,7 @@
                                                                                 <label class="control-label form-label " for="puissance_fiscale">Puissance fiscale</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="puissance_fiscale" id="puissance_fiscale" required>
+                                                                                <select class="required form-control select" name="puissance_fiscale" id="puissance_fiscale">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -413,7 +413,7 @@
                                                                                 <label class="control-label form-label " for="premiere_main">Première main</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="premiere_main" id="premiere_main" required>
+                                                                                <select class="required form-control select" name="premiere_main" id="premiere_main">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="1">Oui</option>
                                                                                     <option value="0">Non</option>
@@ -425,7 +425,7 @@
                                                                                 <label class="control-label form-label " for="garantie">Véhicule en garantie</label>
                                                                             </div>
                                                                             <div class="col-md-9">
-                                                                                <select class="form-control select" name="garantie" id="garantie" required>
+                                                                                <select class="required form-control select" name="garantie" id="garantie">
                                                                                     <option value="" disabled selected></option>
                                                                                     <option value="1">Oui</option>
                                                                                     <option value="0">Non</option>
@@ -706,13 +706,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <ul class="list-inline wizard mb-0">
-                                                            <li class="previous list-inline-item"><button type="button" class="btn btn-success btn-sm mt-0 mb-0">Precedent</button></li>
-                                                            <li class="next list-inline-item float-right"><button type="button" class="btn btn-success btn-sm mt-0 mb-0">Suivant</button></li>
+                                                        <ul class="list-inline wizard mb-0 mb-5">
+                                                            <li class="previous list-inline-item float-left"><button type="button" class="btn btn-success btn-sm mt-0 mb-0" id="previous">Precedent</button></li>
+                                                            <li class="next list-inline-item float-right"><button type="button" class="btn btn-success btn-sm mt-0 mb-0" id="next">Suivant</button></li>
+                                                            <li class="submit list-inline-item float-right"><button type="submit" name="new_car_form" class="btn btn-primary mt-4 float-right" style='margin-top:0!important;'>Valider</button></li>
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <button type="submit" name="new_car_form" class="btn btn-primary mt-4">Valider</button>
                                             </form>
                                         </div>
                                         
@@ -732,7 +732,9 @@
 		@include('LTR/dashboard/scripts')
         <!-- Form wizard js -->
         <script src="../assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
-		<script src="../assets/js/wizard.js"></script>
+        <script>
+            var redirect_url = "{{ route('mycars') }}";
+        </script>
 
         <script src="../js/add_car.js"></script>
 

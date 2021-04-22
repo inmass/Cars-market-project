@@ -1,5 +1,5 @@
 {{-- marque selection --}}
-<select name="marque" id="marque" class="form-control select" required>
+<select name="marque" id="marque" class="required form-control select">
     <option disabled selected></option>
     <option value="Seat">Seat</option>
     <option value="Renault">Renault</option>

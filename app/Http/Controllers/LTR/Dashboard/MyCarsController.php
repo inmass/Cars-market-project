@@ -20,7 +20,7 @@ class MyCarsController extends Controller
         $total_cars = Car::where('user_id' ,'=', Auth::user()->id)->get();
 
         $context = [
-            'total_cars'=> $total_cars,
+            'total_cars'=> $total_cars->SortByDesc('created_at'),
         ];
 
         return view('LTR.dashboard.mycars', $context);

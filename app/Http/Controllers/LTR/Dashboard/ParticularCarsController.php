@@ -14,7 +14,7 @@ class ParticularCarsController extends Controller
         $total_cars = Car::where('particular_id' ,'!=', NULL)->get();
 
         $context = [
-            'total_cars'=> $total_cars,
+            'total_cars'=> $total_cars->SortByDesc('created_at'),
         ];
 
         return view('LTR.dashboard.particularcars', $context);

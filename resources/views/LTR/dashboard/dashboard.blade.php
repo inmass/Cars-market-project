@@ -3,7 +3,7 @@
 	<head>
 		@include('LTR/dashboard/base')
 		<!-- Title -->
-		<title>Dashboard</title>
+		<title>Administration</title>
 		
 	</head>
 	<body class="app sidebar-mini">

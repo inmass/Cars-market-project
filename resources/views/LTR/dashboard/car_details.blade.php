@@ -4,7 +4,7 @@
 		@include('LTR/dashboard/base')
 
 		<!-- Title -->
-		<title>{{ $car->marque }} {{ $car->modele }} {{ $car->version }}</title>
+		<title>{{ $car->marque }} {{ $car->modele }} v{{ $car->version }}</title>
 	</head>
 	<body class="app sidebar-mini">
 
@@ -99,10 +99,11 @@
 										<h4 class="mt-4 mb-4">Options</h4>
 										<div class="pro_detail border p-4">
 											<ul class="list-unstyled mb-0">
+												@foreach ($car->getAllOptions() as $option)
 												<li class="row">
-													<div class="col-sm-3 text-muted mb-2">Options</div>
-													<div class="col-sm-3 mb-2">Fas-track</div>
+													<p>{{ $option }}</p>
 												</li>
+												@endforeach
 											</ul>
 										</div>
 									</div>

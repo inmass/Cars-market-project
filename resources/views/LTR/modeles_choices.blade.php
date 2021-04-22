@@ -1,5 +1,5 @@
 {{-- modele selection --}}
-<select name="select_modele" id="select_modele" class = "form-control select" required>
+<select name="select_modele" id="select_modele" class = "required form-control select">
     <option disabled selected></option>
     <option class = "conditional Seat" value = "Alhambra">Alhambra</option>
     <option class = "conditional Seat" value = "Altea">Altea</option>
@@ -892,4 +892,4 @@
     <option class = "conditional Smart" value = "Fortwo coupé">Fortwo coupé</option>
     <option class = "conditional Smart" value = "Roadster">Roadster</option>
 </select>
-<input name="input_modele" id="input_modele" class = "form-control" style="display: none;">
+<input name="input_modele" id="input_modele" class = "form-control" style="display: none;" disabled>

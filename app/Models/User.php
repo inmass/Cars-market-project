@@ -21,6 +21,17 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    // check if user can add more cars
+    public function canAddCar() {
+        $number_of_cars = $this->cars->where('visible', '=', 1)->count();
+        $cars_limit = $this->pack->nombre_de_voitures;
+        if ($number_of_cars < $cars_limit) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

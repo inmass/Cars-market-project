@@ -70,6 +70,13 @@ send_form.addEventListener('submit', e=>{
                     }, function(){ 
                         location.reload();
                     });
+                } else if ('limit' in data) {
+                    $('#car_edit').modal('hide');
+                    swal({
+                        title: '',
+                        text: data.limit,
+                        type: 'error',
+                    });
                 } else {
                     $('#'+key+'_errors').html(data[key]);
                 }
