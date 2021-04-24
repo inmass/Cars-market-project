@@ -68,7 +68,7 @@
 												</li>
 												<li class="p-b-20 row">
 													<div class="col-sm-3 text-muted mb-2">Kilometrage</div>
-													<div class="col-sm-3 mb-2">{{ $car->kilometrage }}</div>
+													<div class="col-sm-3 mb-2">{{ $car->kilometrage }} KM</div>
 												</li>
 												<li class="p-b-20 row">
 													<div class="col-sm-3 text-muted mb-2">Couleur</div>
@@ -88,22 +88,44 @@
 												</li>
 												<li class="p-b-20 row">
 													<div class="col-sm-3 text-muted mb-2">Premiere main</div>
-													<div class="col-sm-3 mb-2">{{ $car->premiere_main }}</div>
+													@if ($car->premiere_main)
+														<div class="col-sm-3 mb-2"><i class="fa fa-check text-green mr-2 "></i>Oui</div>
+													@else
+														<div class="col-sm-3 mb-2"><i class="fa fa-close text-red mr-2 "></i>Non</div>
+													@endif
 												</li>
 												<li class="p-b-20 row">
 													<div class="col-sm-3 text-muted mb-2">Garantie</div>
-													<div class="col-sm-3 mb-2">{{ $car->garantie }}</div>
+													@if ($car->garantie)
+														<div class="col-sm-3 mb-2"><i class="fa fa-check text-green mr-2 "></i>Oui</div>
+													@else
+														<div class="col-sm-3 mb-2"><i class="fa fa-close text-red mr-2 "></i>Non</div>
+													@endif
 												</li>
 											</ul>
 										</div>
 										<h4 class="mt-4 mb-4">Options</h4>
 										<div class="pro_detail border p-4">
-											<ul class="list-unstyled mb-0">
-												@foreach ($car->getAllOptions() as $option)
-												<li class="row">
-													<p>{{ $option }}</p>
-												</li>
-												@endforeach
+											<ul class="list-unstyled mb-0 ">
+												<div class="container">
+													<div class="row">
+														{{-- @foreach ($car->getAllOptions() as $option)
+														<div class='col-6 d-flex'>
+															<h4><i class="fa fa-check text-green mr-2 "></i></h4><p>{{ $option }}</p>
+														</div>
+														@endforeach --}}
+														@foreach ($car_options as $car_option)
+															<div class='col-6 d-flex'>
+																@if (in_array($car_option, $car->getAllOptions()))
+																	<h4><i class="fa fa-check text-green mr-2 "></i></h4>
+																@else
+																	<h4><i class="fa fa-close text-red mr-2 "></i></h4>
+																@endif
+																<p>{{ $car_option }}</p>
+															</div>
+														@endforeach
+													</div>
+												</div>
 											</ul>
 										</div>
 									</div>

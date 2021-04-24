@@ -108,7 +108,7 @@
 																		<td>En pause</td>
 																	@endif
 																@else
-																	<td>Vendu</td>
+																	<td>Vendue</td>
 																@endif
 																<td class="w-1">
 																	@if ($car->available)

@@ -16,6 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->mediumText('images')->nullable();
             $table->string('marque');
             $table->string('modele');
             $table->string('version');
@@ -31,7 +32,7 @@ class CreateCarsTable extends Migration
             $table->boolean('premiere_main');
             $table->boolean('garantie');
             $table->string('prix');
-            $table->string('options'); //will be stored as a serialized array from checkboxes value
+            $table->mediumText('options'); //will be stored as a serialized array from checkboxes value
 
             // special columns
             $table->boolean('available')->default(1);

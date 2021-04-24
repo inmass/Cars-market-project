@@ -13,8 +13,59 @@ class CarDetailsController extends Controller
     {   
         $id = intval(explode('-', $slug)[1])/17;
         $car = Car::find($id);
+        $car_options = [
+            "Dvd/cd/mp3",
+            "Alarme",
+            "Aide parking",
+            "Abs",
+
+            "Carnet d'entretien",
+            "Anti patinage",
+            "Capot électrique",
+            "Rétroviseur extérieur électrique",
+
+            "Toit ouvrant",
+            "Siège chauffant",
+            "Siège sport",
+            "Volant réglable",
+
+            "Volant sport",
+            "Détecteur de pluie",
+            "Direction assistée",
+            "Ordinateur de bord",
+
+            "Régulateur de vitesse",
+            "Affichage tête haute",
+            "Frein de parking automatique",
+            "Système d'identification du conducteur",
+
+            "Jantes aluminium",
+            "Airbags",
+            "Climatisation auto",
+            "Système de navigation / GPS",
+
+            "Vitres électriques",
+            "Programme de stabilité électronique",
+            "Projecteurs xénons",
+            "Toit ouvrant panoramique",
+
+            "Intérieur cuir",
+            "Siège électrique",
+            "Vitres surteintées",
+            "Anti démarrage",
+
+            "Contrôle de pression des pneus",
+            "Climatisation multizone",
+            "Keyless go",
+            "Radio commande au volant",
+
+            "Anti brouillard",
+            "Suspension sport",
+            "Non-fumeur",
+        ];
         $context = [
             'car'=>$car,
+            'car_options'=>$car_options,
         ];
 
         if ($request->ajax()) {

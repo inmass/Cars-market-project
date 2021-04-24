@@ -5,7 +5,7 @@
 
 		<!-- Title -->
 		<title>Ajouter voiture</title>
-	</head>
+    </head>
 	<body class="app sidebar-mini">
 
 		<!--Loader-->
@@ -57,7 +57,17 @@
                                                                 <div class="col-12">
                                                                     <div class="form-group clearfix">
                                                                         <div class="row ">
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-3 m4-4">
+                                                                                <label class="control-label form-label" for="marque">Media</label>
+                                                                            </div>
+                                                                            <div class="col-md-9 mb-4">
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="images" name="images" accept="image/*" multiple>
+                                                                                    <label class="custom-file-label">Choose files</label>
+                                                                                </div>
+                                                                                <p class="m-0" id="chosen_files"></p>
+                                                                            </div>
+                                                                            <div class="col-md-3 ">
                                                                                 <label class="control-label form-label" for="marque">Marque</label>
                                                                             </div>
                                                                             <div class="col-md-9">
@@ -205,7 +215,7 @@
                                                                             <div class="col-md-9">
                                                                                 <select class="required form-control select" name="dedouane" id="dedouane">
                                                                                     <option value="" disabled selected></option>
-                                                                                    <option value="Non, achté au maroc (ww)">Non, achté au maroc (ww)</option>
+                                                                                    <option value="Non, achté au maroc (ww)">Non, achetée au maroc (ww)</option>
                                                                                     <option value="oui, dédouané">oui, dédouané</option>
                                                                                     <option value="Pas encore dédouané">Pas encore dédouané</option>
                                                                                     <option value="Importée neuve">Importée neuve</option>
