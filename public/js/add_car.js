@@ -85,35 +85,46 @@ function previewImages() {
     var preview = document.querySelector('#chosen_files');
     preview.innerHTML = "";
 
-    if (this.files) {
-        [].forEach.call(this.files, readAndPreview);
-    }
+    console.log(pics_limit);
+    console.log(this.files.length);
 
-    function readAndPreview(file) {
-
-        // Make sure `file.name` matches our extensions criteria
-        if (!/\.(jpe?g|png|gif|jpg|svg)$/i.test(file.name)) {
-            swal({
-                title: '',
-                text: file.name + " n'est pas une image",
-                type: 'error',
-            });
-        } else {
-        
-            var reader = new FileReader();
-            
-            reader.addEventListener("load", function() {
-            var image = new Image();
-            image.height = 100;
-            image.title  = file.name;
-            image.style = "margin:2px;margin-top:5px;";
-            image.src    = this.result;
-            preview.appendChild(image);
-            });
-            
-            reader.readAsDataURL(file);
+    if (this.files.length > pics_limit) {
+        swal({
+            title: '',
+            text: 'Vous ne pouvez pas ajouter plus de '+ pics_limit + ' IMAGES',
+            type: 'error',
+        });
+    } else {   
+        if (this.files) {
+            [].forEach.call(this.files, readAndPreview);
         }
-        
+    
+        function readAndPreview(file) {
+    
+            // Make sure `file.name` matches our extensions criteria
+            if (!/\.(jpe?g|png|gif|jpg|svg)$/i.test(file.name)) {
+                swal({
+                    title: '',
+                    text: file.name + " n'est pas une image",
+                    type: 'error',
+                });
+            } else {
+            
+                var reader = new FileReader();
+                
+                reader.addEventListener("load", function() {
+                var image = new Image();
+                image.height = 100;
+                image.title  = file.name;
+                image.style = "margin:2px;margin-top:5px;";
+                image.src    = this.result;
+                preview.appendChild(image);
+                });
+                
+                reader.readAsDataURL(file);
+            }
+            
+        }
     }
 
 }

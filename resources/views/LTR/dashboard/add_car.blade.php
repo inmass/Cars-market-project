@@ -759,6 +759,7 @@
         <script src="../assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
         <script>
             var redirect_url = "{{ route('mycars') }}";
+            var pics_limit = {{Auth::user()->pack->prise_des_photos_des_voitures}};
         </script>
 
         <script src="../js/add_car.js"></script>
