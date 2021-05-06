@@ -3,7 +3,6 @@ $('#form_wizard').bootstrapWizard({
     onTabShow: function(tab, navigation, index) {
         var $total = navigation.find('li').length;
         var $current = index+1;
-        console.log($current);
 
         var wizard = navigation.closest('#form_wizard');
 
