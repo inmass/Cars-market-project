@@ -4,7 +4,7 @@ namespace App\Rules;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Rule;
 
-class isValidPassword implements Rule
+class IsValidPassword implements Rule
 {
     /**
      * Determine if the Length Validation Rule passes.

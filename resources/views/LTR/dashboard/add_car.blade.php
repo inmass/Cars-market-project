@@ -5,6 +5,16 @@
 
 		<!-- Title -->
 		<title>Ajouter voiture</title>
+        <style>
+            .nohover{
+                pointer-events: none;
+            }
+            @media only screen and (max-width: 448px) {
+                .nav {
+                    display: inherit !important;
+                }
+            }
+        </style>
     </head>
 	<body class="app sidebar-mini">
 
@@ -43,29 +53,34 @@
                                         <hr>
                                         <div class="fade show active mt-7" > 
                                             <h3 class="mb-5 mt-15">Ajouter une nouvelle voiture</h3>
-                                            <form id="new_car_form" method="post">
+                                            <form id="new_car_form" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div id="form_wizard" class="border pt-0">
                                                     <ul class="nav nav-tabs nav-justified">
-                                                        <li class="nav-item"><a href="#tab1" data-toggle="tab" class="nav-link font-bold">Specifications</a></li>
-                                                        <li class="nav-item"><a href="#tab2" data-toggle="tab" class="nav-link font-light">Informations voiture</a></li>
-                                                        <li class="nav-item"><a href="#tab3" data-toggle="tab" class="nav-link font-light">Options</a></li>
+                                                        <li class="nav-item"><a style="width:100%;diplay:flex;justify-content:center;font-size:17px;" href="#tab1" data-toggle="tab" class="nohover nav-link font-bold">Specifications</a></li>
+                                                        <li class="nav-item"><a style="width:100%;diplay:flex;justify-content:center;font-size:17px;" href="#tab2" data-toggle="tab" class="nohover nav-link font-light">Informations voiture</a></li>
+                                                        <li class="nav-item"><a style="width:100%;diplay:flex;justify-content:center;font-size:17px;" href="#tab3" data-toggle="tab" class="nohover nav-link font-light">Options</a></li>
                                                     </ul>
                                                     <div class="tab-content card-body mt-3 b-0 mb-0">
+                                                        {{-- <ul class="list-inline wizard mb-0 mb-5">
+                                                            <li class="previous list-inline-item float-left"><button type="button" class="btn btn-success btn-sm mt-0 mb-0" id="previous">Precedent</button></li>
+                                                            <li class="next list-inline-item float-right"><button type="button" class="btn btn-success btn-sm mt-0 mb-0" id="next">Suivant</button></li>
+                                                            <li class="submit list-inline-item float-right"><button type="submit" name="new_car_form" class="btn btn-primary mt-4 float-right" style='margin-top:0!important;'>Valider</button></li>
+                                                        </ul> --}}
                                                         <div class="tab-pane m-t-10 fade" id="tab1">
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="form-group clearfix">
                                                                         <div class="row ">
                                                                             <div class="col-md-3 m4-4">
-                                                                                <label class="control-label form-label" for="marque">Media</label>
+                                                                                <label class="control-label form-label" for="images">Media</label>
                                                                             </div>
                                                                             <div class="col-md-9 mb-4">
                                                                                 <div class="custom-file">
-                                                                                    <input type="file" class="custom-file-input" id="images" name="images" accept="image/*" multiple>
+                                                                                    <input type="file" class="custom-file-input" id="images" name="images[]" accept="image/*" multiple>
                                                                                     <label class="custom-file-label">Choose files</label>
                                                                                 </div>
-                                                                                <p class="m-0" id="chosen_files"></p>
+                                                                                <div class="m-0" id="chosen_files"></div>
                                                                             </div>
                                                                             <div class="col-md-3 ">
                                                                                 <label class="control-label form-label" for="marque">Marque</label>

@@ -5,6 +5,9 @@
 
 		<!-- Title -->
 		<title>{{ $car->marque }} {{ $car->modele }} v{{ $car->version }}</title>
+		<link rel="stylesheet" href="../slick/slick.css">
+		<link rel="stylesheet" href="../slick/slick-theme.css">
+		<link rel="stylesheet" href="../css/car_details.css">
 	</head>
 	<body class="app sidebar-mini">
 
@@ -28,9 +31,15 @@
 							<div class="col-lg-12 col-md-12">
 								<div class="card m-b-20">
 									<div class="card-body">
-										<div class="bg-light p-6 text-center">
-											<img class="" alt="Product" src="../assets/images/admin-media/0-4.jpg">
-										</div>
+										@if ($car->images)
+											<div class="bg-light p-6 text-center">
+												<div class="carousel">
+													@foreach (unserialize($car->images) as $image)
+														<div class="image_container" style="height:400px;display:flex;justify-content:center;margin-bottom:5px;"><img data-enlargeable class="" alt="{{$image}}" src="../images/uploads/{{$image}}" ></div>
+													@endforeach
+												</div>
+											</div>
+										@endif
 										<div class="d-flex flex-row justify-content-between align-center">
 											<h4 class="mt-4 mb-4">Specifications</h4>
 											<h3 class="mt-4 mb-4 ">{{ $car->prix }} DH</h3>
@@ -143,6 +152,46 @@
 		<!--/Page-->
 
 		@include('LTR/dashboard/scripts')
+		<script src="../slick/slick.min.js"></script>
+				
+		<script>
+			$(".carousel").slick({
+				arrows: true,
+				dots: true,
+				infinite: false,
+				focusOnSelect: true,
+			});
+
+			$('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+			var src = $(this).attr('src');
+			var modal;
+
+			function removeModal() {
+				modal.remove();
+				$('body').off('keyup.modal-close');
+			}
+			modal = $('<div>').css({
+				background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+				backgroundSize: 'contain',
+				width: '100%',
+				height: '100%',
+				position: 'fixed',
+				zIndex: '10000',
+				top: '0',
+				left: '0',
+				cursor: 'zoom-out'
+			}).click(function() {
+				removeModal();
+			}).appendTo('body');
+			//handling ESC
+			$('body').on('keyup.modal-close', function(e) {
+				if (e.key) {
+				removeModal();
+				}
+			});
+			});
+
+		</script>
 
 	</body>
 </html>

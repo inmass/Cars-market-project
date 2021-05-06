@@ -1,12 +1,11 @@
 // form wizard
 $('#form_wizard').bootstrapWizard({
-    'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted',
     onTabShow: function(tab, navigation, index) {
         var $total = navigation.find('li').length;
         var $current = index+1;
+        console.log($current);
 
         var wizard = navigation.closest('#form_wizard');
-        console.log($current);
 
         // If it's the last tab then hide the last button and show the finish instead
         if($current == 1) {
@@ -20,7 +19,10 @@ $('#form_wizard').bootstrapWizard({
             $(wizard).find('.next').show();
             $(wizard).find('.submit').hide();
         }
-    }
+    },
+    onTabClick: function(tab, navigation, index) {
+		return false;
+	}
 });
 
 document.getElementById('tab1').addEventListener('submit',function(){
@@ -76,6 +78,50 @@ $(function(){
     }).trigger("change");
 });
 // marque and models "other" inputs handling
+
+// image preview
+function previewImages() {
+
+    var preview = document.querySelector('#chosen_files');
+    preview.innerHTML = "";
+
+    if (this.files) {
+        [].forEach.call(this.files, readAndPreview);
+    }
+
+    function readAndPreview(file) {
+
+        // Make sure `file.name` matches our extensions criteria
+        if (!/\.(jpe?g|png|gif|jpg|svg)$/i.test(file.name)) {
+            swal({
+                title: '',
+                text: file.name + " n'est pas une image",
+                type: 'error',
+            });
+        } else {
+        
+            var reader = new FileReader();
+            
+            reader.addEventListener("load", function() {
+            var image = new Image();
+            image.height = 100;
+            image.title  = file.name;
+            image.style = "margin:2px;margin-top:5px;";
+            image.src    = this.result;
+            preview.appendChild(image);
+            });
+            
+            reader.readAsDataURL(file);
+        }
+        
+    }
+
+}
+  
+document.querySelector('#images').addEventListener("change", previewImages);
+  
+// image preview
+
 // AJAX requests
 $.ajaxSetup({
     headers: {
@@ -171,8 +217,15 @@ new_car_form.addEventListener('submit', e=>{
     $('input[name="options[]"]:checked').each (function (index, element) {
         options_array.push( $(element).val());
     });   
+
+    
     
     const fd = new FormData();
+    let TotalImages = $('#images')[0].files.length; 
+    let images = $('#images')[0]; 
+    for (let i = 0; i < TotalImages; i++) {
+        fd.append('images[]', images.files[i]);
+    }
     fd.append('marque', marque.value);
     if (input_modele.value) {
         fd.append('input_modele', input_modele.value);

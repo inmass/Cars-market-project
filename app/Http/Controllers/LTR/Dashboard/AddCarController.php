@@ -67,7 +67,15 @@ class AddCarController extends Controller
             $response = array();
 
             // validation rules
+            $max_images = $user->pack->prise_des_photos_des_voitures;
+            // image validation
+            $img_validator = Validator::make($request->all(), [
+                'images.*' => "mimes:jpeg,png,jpg,gif,svg", // all files should be of image type
+                'images' => "max:$max_images", // user can't upload more than what the pack provides
+            ]);
+            // other fields validation
             $validator = Validator::make($request->all(), [
+                'images' => "required",
                 'marque' => 'required',
                 'input_modele' => 'required_without:select_modele',
                 'select_modele' => 'required_without:input_modele',
@@ -87,6 +95,12 @@ class AddCarController extends Controller
                 'options' => 'required',
             ]);
 
+            // check if the img_validation fails
+            if ($img_validator->fails()) {
+                $message = 'Vous ne pouvez pas ajouter plus de '.$max_images.' IMAGES.';
+                return response()->json(['error'=> $message]);
+            }
+
             // check if the validation fails
             if ($validator->fails()) {
                 return response()->json(['error'=>'Assurez-vous de remplir tous les champs.']);
@@ -94,6 +108,14 @@ class AddCarController extends Controller
             
             // if validated
             $car = new Car;
+            // images upload
+            $all_images = [];
+            foreach ($request->file('images') as $file) {
+                $imageName = time().$file->getClientOriginalName();  
+                $file->move(public_path('images/uploads'), $imageName);
+                array_push($all_images, $imageName);
+            }
+            $car->images = serialize($all_images);
             $car->marque = $request->marque;
             if ($request->input_modele) {
                 $car->modele = $request->input_modele ;
@@ -114,6 +136,7 @@ class AddCarController extends Controller
             $car->premiere_main = $request->premiere_main ;
             $car->garantie = $request->garantie ;
             $car->options = serialize(explode(',', $request->options)) ;
+            // $car->options = serialize($request->options) ;
             $car->user_id = $user->id;
             if ($user->canAddCar()) { // check if user can add more visible cars
                 $car->save();
