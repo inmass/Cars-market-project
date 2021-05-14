@@ -53,7 +53,7 @@
                 <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Profil</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('profile') }}">informations generales</a></li>
-                    <li><a class="slide-item" href="#">Gestion d'abonnement</a></li>
+                    <li><a class="slide-item" href="{{route('manage_sub')}}">Gestion d'abonnement</a></li>
                 </ul>
             </li>
             <li class="slide">
@@ -65,17 +65,24 @@
                 </ul>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="#"></i><span class="side-menu__label">Messages</span></a>
+                <a class="side-menu__item" href="{{ route('garage_messages') }}">
+                    <span class="side-menu__label">
+                        Messages
+                        @if (Auth::user()->messages->where('seen', '=', '0')->count())
+                            <span class="badge badge-primary">{{Auth::user()->messages->where('seen', '=', '0')->count()}}</span>
+                        @endif
+                    </span>
+                </a>
             </li>
         @else
             <li class="slide">
-                <a class="side-menu__item" href="{{ route('dashboard') }}"></i><span class="side-menu__label">Dashboard</span></a>
+                <a class="side-menu__item" href="{{ route('dashboard') }}"><span class="side-menu__label">Dashboard</span></a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="#"></i><span class="side-menu__label">General setting</span></a>
+                <a class="side-menu__item" href="#"><span class="side-menu__label">General setting</span></a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Garages</span><i class="angle fa fa-angle-right"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href="#"><span class="side-menu__label">Garages</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="#">Liste des garages</a></li>
                     <li><a class="slide-item" href="#">Voitures particulier</a></li>

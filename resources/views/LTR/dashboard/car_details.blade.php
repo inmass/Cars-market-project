@@ -4,7 +4,7 @@
 		@include('LTR/dashboard/base')
 
 		<!-- Title -->
-		<title>{{ $car->marque }} {{ $car->modele }} v{{ $car->version }}</title>
+		<title>{{ $car->marque }} {{ $car->modele }} v-{{ $car->version }}</title>
 		<link rel="stylesheet" href="../slick/slick.css">
 		<link rel="stylesheet" href="../slick/slick-theme.css">
 		<link rel="stylesheet" href="../css/car_details.css">

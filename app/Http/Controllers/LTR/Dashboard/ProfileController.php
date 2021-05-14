@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Auth, Validator;
-use App\Rules\isValidPassword;
+use App\Rules\IsValidPassword;
 
 class ProfileController extends Controller
 {

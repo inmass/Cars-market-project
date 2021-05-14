@@ -116,7 +116,12 @@ class AddCarController extends Controller
                 array_push($all_images, $imageName);
             }
             $car->images = serialize($all_images);
-            $car->marque = $request->marque;
+            if (str_contains($request->marque, '_')) {
+                $marque = str_replace ('_', ' ', $request->marque);
+            } else {
+                $marque=$request->marque;
+            }
+            $car->marque = $marque;
             if ($request->input_modele) {
                 $car->modele = $request->input_modele ;
             } else {
