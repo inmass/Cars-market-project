@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LTR\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Particular;
 use Auth, Validator;
 
 class AddCarController extends Controller
@@ -36,6 +37,7 @@ class AddCarController extends Controller
 
             // if validated
             $car = Car::where('token' ,'=', $request->car_token)->first();
+            $particular_owner = Particular::where('id', '=', $car->particular_id)->first();
             // check if there is a car with the submitted token
             if ($car) {
                 $response = array();
@@ -43,6 +45,8 @@ class AddCarController extends Controller
                 if ($car->user_id) { // check if the car has already a user
                     $response = ['error'=> 'Vous ne pouvez pas ajouter cette voiture!'];
                 } else {
+                    $particular_owner->car_id = null;
+                    $particular_owner->save();
                     $car->particular_id = null; // removing relationship with particular
                     $car->user_id = $user->id; //assigning to user
                     $car->created_at = now(); // to be shown on top of the list of "my cars"

@@ -8,19 +8,19 @@ use App\Http\Controllers\LTR\Dashboard\CarDetailsController;
 use App\Http\Controllers\LTR\Dashboard\AddCarController;
 use App\Http\Controllers\LTR\Dashboard\SubscriptionController;
 use App\Http\Controllers\LTR\Dashboard\MessagesController;
+use App\Http\Controllers\LTR\Dashboard\GaragesController;
+use App\Http\Controllers\LTR\Dashboard\GarageDetailsController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
+Route::prefix('/dashboard')->middleware(['auth'])->middleware(['normaluser'])->group(function () {
 
     Route::get('', [DashBoardController::class, 'show'])
     ->name('dashboard');
 
     Route::get('/my_cars', [MyCarsController::class, 'show'])
-    ->middleware(['normaluser'])
     ->name('mycars');
 
     Route::get('/profile', [ProfileController::class, 'show'])
-    ->middleware(['normaluser'])
     ->name('profile');
 
     Route::post('/profile', [ProfileController::class, 'store']);
@@ -34,17 +34,35 @@ Route::prefix('/dashboard')->middleware(['auth'])->group(function () {
     Route::post('/car/{slug?}', [CarDetailsController::class, 'store']);
 
     Route::get('/add_car', [AddCarController::class, 'show'])
-    ->middleware(['normaluser'])
     ->name('add_car');
 
     Route::post('/add_car', [AddCarController::class, 'store']);
 
     Route::get('/subscription', [SubscriptionController::class, 'show'])
-    ->middleware(['normaluser'])
     ->name('manage_sub');
 
     Route::get('/messages', [MessagesController::class, 'show'])
-    ->middleware(['normaluser'])
     ->name('garage_messages');
+
+});
+
+Route::prefix('/admin')->middleware(['auth'])->middleware(['superuser'])->group(function () {
+
+    Route::get('', [DashBoardController::class, 'show'])
+    ->name('super_dashboard');
+
+    Route::get('/garages', [GaragesController::class, 'show'])
+    ->name('garages_list');
+
+    Route::get('/garage/{slug?}', [GarageDetailsController::class, 'show'])
+    ->name('garage_details');
+
+    Route::post('/garage/{slug}', [GarageDetailsController::class, 'store']);
+
+    Route::get('/particular', [ParticularCarsController::class, 'admin_show'])
+    ->name('admin_particular_cars');
+
+    Route::get('/car/{slug?}', [CarDetailsController::class, 'show'])
+    ->name('admin_dash_car');
 
 });

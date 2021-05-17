@@ -156,7 +156,7 @@
                                             <div class="fade show active mb-7" >
                                                 
                                                 <h3 class="mb-5">Mon profil</h3>
-                                                <div class="table-responsive border">
+                                                <div class="table-responsive">
                                                     <table class="table row table-borderless w-100 m-0 ">
                                                         <tbody class="col-lg-12 col-xl-6 p-0">
                                                             <tr>
@@ -179,19 +179,15 @@
                                                 <button type="button" class="btn btn-danger btn-sm mt-2 float-right" data-toggle="modal" data-target="#password_edit">Changer Mot de passe ?</button>
                                                 <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#profile_edit">Editer</button>
                                             </div>
+											<hr>
                                             <div class="fade show active " >
                                                 
                                                 <h3 class="mb-5">Mon garage</h3>
-                                                <div class="table-responsive border">
+                                                <div class="table-responsive ">
                                                     <table class="table row table-borderless w-100 m-0 ">
                                                         <tbody class="col-lg-12 col-xl-6 p-0">
-                                                            <div class="card card-profile cover-image "  data-image-src="../assets/images/photos/gradient3.jpg">
-                                                                <div class="card-body text-left">
-                                                                    <img class="card-profile-img" src="../assets/images/users/male/25.jpg" alt="img">
-                                                                    <h3 class="mb-1 text-white">{{ Auth::user()->nom_garage }}</h3>
-                                                                </div>
-                                                            </div>
-                                                            <tr>
+															<img class="card-profile-img" src="../images/uploads/{{Auth::user()->logo_garage}}" alt="img">
+															<tr>
                                                                 <td><strong>Nom garage :</strong> {{ Auth::user()->nom_garage }}</td>
                                                             </tr>
                                                             <tr>

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class SuperUser
 {
@@ -19,5 +20,6 @@ class SuperUser
         if (!Auth::user()->super_user) {
             return redirect()->route('dashboard');
         }
+        return $next($request);
     }
 }

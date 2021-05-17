@@ -18,7 +18,8 @@ class NormalUser
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->super_user) {
-            return redirect()->route('dashboard');
+            return redirect()->route('super_dashboard');
         }
+        return $next($request);
     }
 }

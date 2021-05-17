@@ -56,9 +56,15 @@
 															<td>{{ $car->version }}</td>
 															<td>{{$car->prix}}</td>
 															<td class="w-1">
-																<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
-																	<i class="fe fe-eye"></i>
-																</a>
+																@if ($admin)
+																	<a href="{{ route('admin_dash_car', $car->uid()) }}" class="icon text-danger">
+																		<i class="fe fe-eye"></i>
+																	</a>
+																@else
+																	<a href="{{ route('dash_car', $car->uid()) }}" class="icon text-danger">
+																		<i class="fe fe-eye"></i>
+																	</a>
+																@endif
 															</td>
 														</tr>
 													@endforeach
