@@ -47,14 +47,14 @@ class AddCarController extends Controller
 
             // if validated
             $car = Car::where('token' ,'=', $request->car_token)->first();
-            $particular_owner = Particular::where('id', '=', $car->particular_id)->first();
             // check if there is a car with the submitted token
             if ($car) {
                 $response = array();
-
+                
                 if ($car->user_id) { // check if the car has already a user
                     $response = ['error'=> 'Vous ne pouvez pas ajouter cette voiture!'];
                 } else {
+                    $particular_owner = Particular::where('id', '=', $car->particular_id)->first();
                     $particular_owner->car_id = null;
                     $particular_owner->save();
                     $car->particular_id = null; // removing relationship with particular
