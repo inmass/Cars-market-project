@@ -10,9 +10,10 @@ use App\Http\Controllers\LTR\Dashboard\SubscriptionController;
 use App\Http\Controllers\LTR\Dashboard\MessagesController;
 use App\Http\Controllers\LTR\Dashboard\GaragesController;
 use App\Http\Controllers\LTR\Dashboard\GarageDetailsController;
+use App\Http\Controllers\LTR\Dashboard\AddGarageController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/dashboard')->middleware(['auth'])->middleware(['normaluser'])->group(function () {
+Route::prefix('/dashboard')->middleware(['auth', 'normaluser'])->group(function () {
 
     Route::get('', [DashBoardController::class, 'show'])
     ->name('dashboard');
@@ -44,9 +45,11 @@ Route::prefix('/dashboard')->middleware(['auth'])->middleware(['normaluser'])->g
     Route::get('/messages', [MessagesController::class, 'show'])
     ->name('garage_messages');
 
+    Route::get('/messages/{slug?}', [MessagesController::class, 'show_single']);
+
 });
 
-Route::prefix('/admin')->middleware(['auth'])->middleware(['superuser'])->group(function () {
+Route::prefix('/admin')->middleware(['auth', 'superuser'])->group(function () {
 
     Route::get('', [DashBoardController::class, 'show'])
     ->name('super_dashboard');
@@ -59,10 +62,21 @@ Route::prefix('/admin')->middleware(['auth'])->middleware(['superuser'])->group(
 
     Route::post('/garage/{slug}', [GarageDetailsController::class, 'store']);
 
+    Route::get('/add_garage', [AddGarageController::class, 'show'])
+    ->name('add_garage');
+
+    Route::post('/add_garage', [AddGarageController::class, 'store']);
+
     Route::get('/particular', [ParticularCarsController::class, 'admin_show'])
     ->name('admin_particular_cars');
 
     Route::get('/car/{slug?}', [CarDetailsController::class, 'show'])
     ->name('admin_dash_car');
 
+    Route::post('/car/{slug?}', [CarDetailsController::class, 'store']);
+
+    Route::get('/add_car/{slug}', [AddCarController::class, 'admin_show'])
+    ->name('admin_add_car');
+
+    Route::post('/add_car/{slug}', [AddCarController::class, 'admin_store']);
 });

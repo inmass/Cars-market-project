@@ -56,7 +56,7 @@
 															<td>{{ $car->version }}</td>
 															<td>{{$car->prix}}</td>
 															<td class="w-1">
-																@if ($admin)
+																@if ($car->super_admin)
 																	<a href="{{ route('admin_dash_car', $car->uid()) }}" class="icon text-danger">
 																		<i class="fe fe-eye"></i>
 																	</a>

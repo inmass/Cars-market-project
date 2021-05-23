@@ -14,14 +14,18 @@ class GarageDetailsController extends Controller
         if ($slug==null) {
             return redirect()->route('garages_list');
         }
-        $garage = User::find($slug);
-
-
-        $context = [
-            'garage' => $garage,
-        ];
-
-        return view('LTR.dashboard.garage_details', $context);
+        if (User::find($slug)) {
+            $garage = User::find($slug);
+    
+    
+            $context = [
+                'garage' => $garage,
+            ];
+    
+            return view('LTR.dashboard.garage_details', $context);
+        } else {
+            return redirect()->route('garages_list');
+        }
     }
 
     public function store(Request $request, $slug)

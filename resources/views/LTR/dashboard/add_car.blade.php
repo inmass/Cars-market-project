@@ -758,7 +758,14 @@
         <!-- Form wizard js -->
         <script src="../assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
         <script>
-            var redirect_url = "{{ route('mycars') }}";
+            var is_admin = {{Auth::user()->super_user}}
+            if (is_admin) {
+                var url = window.location.pathname;
+                var id = url.substring(url.lastIndexOf('/') + 1);
+                var redirect_url = `admin/garage/${id}`;
+            } else {
+                var redirect_url = "{{ route('mycars') }}";
+            }
             var pics_limit = {{Auth::user()->pack->prise_des_photos_des_voitures}};
         </script>
 

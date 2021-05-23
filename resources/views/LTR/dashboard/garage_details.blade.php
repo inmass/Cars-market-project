@@ -134,6 +134,109 @@
                                         </div>
                                     </div>
                                 </div>
+								@if ($garage->cars->count())
+									<!--Modal-->
+									<form action="" id="car_edit_form" method="post">
+										@csrf
+										<div class="modal fade" id="car_edit" tabindex="-1" role="dialog"  aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="example-Modal3">Editer voiture</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<form>
+															<div class="form-group ">
+																<div class="form-group">
+																	<label  class="form-control-label">Prix (en Dirhams):</label>
+																	<input type="text" class="form-control" id="prix" name="prix" value="">
+																	<p id="prix_errors" class = "errors text-danger"></p>
+																</div>
+																<div class="row">
+																	<div class="col">
+																		<label class="form-label">Statut:</label>
+																		<select id="statut" name="statut" class="form-control select2">
+																			<option value='en_vente'>En vente</option>
+																			<option value='vendue'>Vendue</option>
+																			<option value='en_pause'>En pause</option>
+																		</select>
+																		<p id="statut_errors" class = "errors text-danger"></p>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+														<button type="submit" name="profile_edit_form" id='profile_edit_form' class="btn btn-primary">Valider</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+									<!--Modal-->
+									<div class="card w-100">
+										<div class="card-header">
+											<h3 class="card-title">Voitures</h3>
+										</div>
+										<div class="card-body p-0">
+											<div class="table-responsive">
+												<table class="table card-table table-striped table-vcenter text-nowrap">
+													<thead>
+														<tr>
+															<th>Id</th>
+															<th>Publiée le</th>
+															<th>Marque</th>
+															<th>Modele</th>
+															<th>Version</th>
+															<th>Prix</th>
+															<th>Statut</th>
+															<th>Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach ($garage->cars as $car)
+															<tr>
+																<td>{{ $car->uid() }}</td>
+																<td class="text-nowrap">{{ $car->created_at->format('d/m/Y') }}</td>
+																<td>{{ $car->marque }}</td>
+																<td>{{ $car->modele }}</td>
+																<td>{{ $car->version }}</td>
+																<td>{{ $car->prix }} DH</td>
+																@if ($car->available == 1)
+																	@if ($car->visible == 1)
+																		<td>En vente</td>
+																	@else
+																		<td>En pause</td>
+																	@endif
+																@else
+																	<td>Vendue</td>
+																@endif
+																<td class="w-1">
+																	@if ($car->available)
+																		<a data-carid="{{ $car->id }}" data-caruid="{{ $car->uid() }}" class="btnModal icon text-danger" data-toggle="modal" data-target="#car_edit">
+																			<i class="fa fa-pencil"></i>
+																		</a>
+																		<span style="color:#212529 !important"> / </span>
+																	@endif
+																	<a href="{{ route('admin_dash_car', $car->uid()) }}" class="icon text-danger">
+																		<i class="fe fe-eye"></i>
+																	</a>
+																</td>
+															</tr>
+														@endforeach
+													</tbody>
+												</table>
+												<div class="card-body p-0 pl-5 pb-3">
+													<a class="btn btn-success btn-sm" href="{{ route('admin_add_car', $garage->id) }}">Ajouter une voiture</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endif
                             </div>
                         </div>
                     </div>
@@ -147,6 +250,21 @@
 		<!--/Page-->
 
 		@include('LTR/dashboard/scripts')
+		{{-- script to change the modal data and action --}}
+		<script type="text/javascript">
+
+			var passedID = '';
+			var passedUID = '';
+			var post_url = "{{ route('admin_dash_car', ':id') }}";
+			var get_url = "{{ route('admin_dash_car', ':uid') }}";
+
+			// reset form and urls action when modal closes
+			$('#car_edit').on('hidden.bs.modal', function () {
+				post_url = "{{ route('admin_dash_car', ':id') }}";
+				get_url = "{{ route('admin_dash_car', ':uid') }}";
+			});
+
+		</script>
 
 		<script type="text/javascript" src="../js/garage.js"></script>
 

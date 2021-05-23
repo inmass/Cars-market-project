@@ -46,24 +46,25 @@
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('super_dashboard') }}"><span class="side-menu__label">Accueil</span></a>
             </li>
-            <li class="slide">
+            {{-- <li class="slide">
                 <a class="side-menu__item" href="#"><span class="side-menu__label">General setting</span></a>
-            </li>
+            </li> --}}
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><span class="side-menu__label">Garages</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('garages_list') }}">Liste des garages</a></li>
+                    <li><a class="slide-item" href="{{ route('add_garage') }}">Ajouter garage</a></li>
                     <li><a class="slide-item" href="{{ route('admin_particular_cars') }}">Voitures particulier</a></li>
                 </ul>
             </li>
-            <li class="slide">
+            {{-- <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"></i><span class="side-menu__label">Messages</span><i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="#">Formulaires contact</a></li>
                     <li><a class="slide-item" href="#">Demandes d'adhesion</a></li>
                     <li><a class="slide-item" href="#">Consultation voitures</a></li>
                 </ul>
-            </li>
+            </li> --}}
 		@endif
     </ul>
 </aside>

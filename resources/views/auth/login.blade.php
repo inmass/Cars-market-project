@@ -8,7 +8,17 @@
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
-
+        <h1>-Admin credentials:</h1>
+        <div style="display: flex;justify-content: space-between; margin-bottom: 5px;">
+            <p><strong>email: </strong>admin@admin.com</p>
+            <p><strong>password: </strong>password123</p>
+        </div>
+        <h1>-User credentials:</h1>
+        <div style="display: flex;justify-content: space-between; margin-bottom: 5px;">
+            <p><strong>email: </strong>user@user.com</p>
+            <p><strong>password: </strong>password123</p>
+        </div>
+        <hr style="margin-bottom: 5px;">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 

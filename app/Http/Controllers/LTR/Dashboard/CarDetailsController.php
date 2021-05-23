@@ -16,7 +16,7 @@ class CarDetailsController extends Controller
             
             $car = Car::find($id);
             
-            if ($car->user_id == null || $car->user_id == Auth::user()->id) {
+            if (Auth::user()->super_user || $car->user_id == null || $car->user_id == Auth::user()->id) {
                 $car_options = [
                     "Dvd/cd/mp3",
                     "Alarme",
@@ -80,7 +80,7 @@ class CarDetailsController extends Controller
             } else {
                 return redirect()->route('mycars');
             }
-        } else {
+        } else { 
             return redirect()->route('mycars');
         }
     }
